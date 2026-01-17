@@ -17,6 +17,18 @@ let currentSegment = "Q1-A";
 // --------------------
 const players = [];
 
+const playerNames = [
+    "Emily",
+    "Avery",
+    "Stella",
+    "Leanna",
+    "Lorelai",
+    "Adelina",
+    "Sharon",
+    "Mckinley",
+    "Riley"
+];
+
 for (let i = 1; i <= 9; i++) {
     players.push({
         id: i,
@@ -47,9 +59,11 @@ const segmentsDiv = document.getElementById("segments");
 // --------------------
 // PLAYER BUTTONS
 // --------------------
-players.forEach(player => {
+players.forEach((player, index) => {
     const btn = document.createElement("button");
     btn.classList.add("player-btn", "out");
+
+    btn.innerText = `${playerNames[index]}\n0:00`;
 
     btn.addEventListener("click", () => {
         togglePlayer(player, btn);
@@ -170,10 +184,10 @@ function updatePlayerDisplay() {
         }
 
         buttons[index].innerText =
-           `Player ${player.id}\n${formatTime(time)}\n` +
+            `${playerNames[index]}\n${formatTime(time)}\n` +
             Object.entries(player.segmentTimes)
-                  .map(([seg, t]) => `${seg}: ${formatTime(t)}`)
-                  .join("\n");
+                .map(([seg, t]) => `${seg}: ${formatTime(t)}`)
+                .join("\n");
     });
 }
 
